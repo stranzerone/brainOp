@@ -22,7 +22,7 @@ const createCookie = async (req, res) => {
          res.cookie('token', token, {
             maxAge: 9000000,
             httpOnly: true,
-            sameSite: 'Strict',
+            sameSite: 'None',
             secure: true,
             path: '/' // Specify the desired path here
         });
