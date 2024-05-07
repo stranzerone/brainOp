@@ -17,7 +17,8 @@ app.use(express.json());
 app.use(cors({
   origin: process.env.FRONTEND,
   credentials: true,
-  secure:true
+  secure:true,
+
 }));
 
 // Connect to MongoDB

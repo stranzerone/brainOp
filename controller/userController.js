@@ -6,7 +6,7 @@ const createUser = async (req, res) => {
   try {
     // Extract user input from request body
     const { name, profilePhoto, username, email, password } = req.body;
-
+console.log(email,password,username)
     // Check if the email is already registered
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -28,23 +28,11 @@ const createUser = async (req, res) => {
     // Save the user to the database
     await newUser.save();
 
-    // Generate JWT token
-    const token = jwt.sign({ userId: newUser._id },process.env.SECRET , { expiresIn: '7d' });
-    res.cookie('token', token, {
-      maxAge: 9000000,
-      httpOnly: true,
-      sameSite: 'Strict',
-      secure: false,
-      path: '/' // Specify the desired path here
-    });
-    
-
-    console.log(token,"token")
-    // Set the token in a cookie
+ 
  
 
     // Respond with success message and user data
-    res.status(200).json({ success: true, message: "User created successfully" });
+res.status(200).json({message:"user added successfully"})
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal server error" });
